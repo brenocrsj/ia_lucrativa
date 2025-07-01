@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<<head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IA Lucrativa: Seu Guia para Ganhar Dinheiro com Inteligência Artificial</title>
@@ -18,7 +18,9 @@
     <link rel="icon" type="image/png" sizes="96x96" href="./favicons/favicon-96x96.png">
     <link rel="manifest" href="./favicons/site.webmanifest"> 
     
-    <meta name="msapplication-TileColor" content="#8A2BE2"> <meta name="theme-color" content="#1a2a3a"> </head>
+    <meta name="msapplication-TileColor" content="#8A2BE2">
+    <meta name="theme-color" content="#1a2a3a">
+</head>
 <body>
     <header class="header">
         <div class="container">
@@ -102,14 +104,12 @@
             const cookieBanner = document.getElementById('cookie-banner');
             const acceptButton = document.getElementById('accept-cookies');
 
-            // Verifica se o usuário já aceitou os cookies
             if (localStorage.getItem('cookiesAccepted')) {
                 cookieBanner.style.display = 'none';
             } else {
-                cookieBanner.style.display = 'flex'; // Mostra o banner
+                cookieBanner.style.display = 'flex';
             }
 
-            // Oculta o banner ao clicar em aceitar
             acceptButton.addEventListener('click', function() {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieBanner.style.display = 'none';
