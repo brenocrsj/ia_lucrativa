@@ -43,7 +43,7 @@
             <article class="main-content">
                 <h1>IA para Automação de Marketing Digital: Otimize Suas Campanhas</h1>
                 <p class="article-meta">Publicado em 30 de Junho de 2025 por IA Lucrativa</p>
-                <img src="https://via.placeholder.com/800x450?text=Marketing+IA" alt="Imagem ilustrativa de marketing digital com IA" class="article-hero-image">
+                <img src="./img/marketing-ia.jpg" alt="Imagem ilustrativa de marketing digital com IA" class="article-hero-image">
                 <p>A Inteligência Artificial está redefinindo o marketing digital. Com a capacidade de analisar dados em larga escala e automatizar processos complexos, a IA se tornou uma ferramenta indispensável para profissionais e empresas que buscam maximizar o retorno de suas campanhas. Veja como a IA pode transformar sua <strong>automação de marketing</strong>.</p>
                 <h3>Otimização de Campanhas e Conteúdo</h3>
                 <ul>
@@ -111,38 +111,6 @@
             acceptButton.addEventListener('click', function() {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieBanner.style.display = 'none';
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const aiModal = document.getElementById('aiGenerationModal');
-            const closeButton = aiModal.querySelector('.close-button');
-            // Seleciona todas as imagens que devem ativar o modal
-            const images = document.querySelectorAll('.article-hero-image, .article-card img, .about-image');
-
-            images.forEach(image => {
-                // Adiciona um overlay para o efeito visual ao passar o mouse
-                const overlay = document.createElement('div');
-                overlay.className = 'image-overlay';
-                overlay.innerHTML = '<span>Clique para Gerar<br>por IA!</span>';
-                image.parentNode.insertBefore(overlay, image.nextSibling); 
-
-                // Evento de clique para mostrar o modal
-                image.addEventListener('click', function() {
-                    aiModal.style.display = 'flex';
-                });
-            });
-
-            closeButton.addEventListener('click', function() {
-                aiModal.style.display = 'none';
-            });
-
-            // Fecha o modal se clicar fora do conteúdo do modal
-            window.addEventListener('click', function(event) {
-                if (event.target == aiModal) {
-                    aiModal.style.display = 'none';
-                }
             });
         });
     </script>

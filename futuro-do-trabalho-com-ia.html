@@ -43,7 +43,7 @@
             <article class="main-content">
                 <h1>O Futuro do Trabalho: Como a IA está Remodelando Carreiras</h1>
                 <p class="article-meta">Publicado em 30 de Junho de 2025 por IA Lucrativa</p>
-                <img src="https://via.placeholder.com/800x450?text=Futuro+do+Trabalho+IA" alt="Imagem ilustrativa do futuro do trabalho com IA" class="article-hero-image">
+                <img src="./img/futuro-do-trabalho-ia.jpg" alt="Imagem ilustrativa do futuro do trabalho com IA" class="article-hero-image">
                 <p>A Inteligência Artificial não é apenas uma ferramenta, mas uma força transformadora que está remodelando o mercado de trabalho global. Longe de apenas substituir empregos, a IA está criando novas funções, exigindo novas habilidades e redefinindo a forma como interagimos com a tecnologia. Entenda <strong>como a IA está impactando o futuro do trabalho</strong> e como você pode se preparar.</p>
                 <h3>Impacto da IA nos Empregos Atuais</h3>
                 <ul>
@@ -113,38 +113,6 @@
             acceptButton.addEventListener('click', function() {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieBanner.style.display = 'none';
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const aiModal = document.getElementById('aiGenerationModal');
-            const closeButton = aiModal.querySelector('.close-button');
-            // Seleciona todas as imagens que devem ativar o modal
-            const images = document.querySelectorAll('.article-hero-image, .article-card img, .about-image');
-
-            images.forEach(image => {
-                // Adiciona um overlay para o efeito visual ao passar o mouse
-                const overlay = document.createElement('div');
-                overlay.className = 'image-overlay';
-                overlay.innerHTML = '<span>Clique para Gerar<br>por IA!</span>';
-                image.parentNode.insertBefore(overlay, image.nextSibling); 
-
-                // Evento de clique para mostrar o modal
-                image.addEventListener('click', function() {
-                    aiModal.style.display = 'flex';
-                });
-            });
-
-            closeButton.addEventListener('click', function() {
-                aiModal.style.display = 'none';
-            });
-
-            // Fecha o modal se clicar fora do conteúdo do modal
-            window.addEventListener('click', function(event) {
-                if (event.target == aiModal) {
-                    aiModal.style.display = 'none';
-                }
             });
         });
     </script>

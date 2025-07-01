@@ -42,7 +42,7 @@
             <article class="main-content">
                 <h1>Guia Completo de Prompt Engineering: A Arte de Conversar com a IA</h1>
                 <p class="article-meta">Publicado em 30 de Junho de 2025 por IA Lucrativa</p>
-                <img src="https://via.placeholder.com/800x450?text=Prompt+Engineering" alt="Imagem ilustrativa de Prompt Engineering" class="article-hero-image">
+                <img src="./img/guia-prompt-engineering.jpg" alt="Imagem ilustrativa de Prompt Engineering" class="article-hero-image">
                 <p>Neste artigo, você vai mergulhar no fascinante mundo da <strong>Prompt Engineering</strong>, a habilidade de criar comandos eficazes para inteligências artificiais generativas. Essa é a chave para desbloquear o verdadeiro potencial da IA e obter resultados incríveis.</p>
                 <p>Aprender a "conversar" com a IA de forma eficiente é uma das habilidades mais valiosas no cenário digital atual. Um bom prompt pode significar a diferença entre uma resposta genérica e um conteúdo altamente relevante e útil.</p>
                 <h3>O que é um Prompt e por que ele é Importante?</h3>
@@ -109,38 +109,6 @@
             acceptButton.addEventListener('click', function() {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieBanner.style.display = 'none';
-            });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const aiModal = document.getElementById('aiGenerationModal');
-            const closeButton = aiModal.querySelector('.close-button');
-            // Seleciona todas as imagens que devem ativar o modal
-            const images = document.querySelectorAll('.article-hero-image, .article-card img, .about-image');
-
-            images.forEach(image => {
-                // Adiciona um overlay para o efeito visual ao passar o mouse
-                const overlay = document.createElement('div');
-                overlay.className = 'image-overlay';
-                overlay.innerHTML = '<span>Clique para Gerar<br>por IA!</span>';
-                image.parentNode.insertBefore(overlay, image.nextSibling); 
-
-                // Evento de clique para mostrar o modal
-                image.addEventListener('click', function() {
-                    aiModal.style.display = 'flex';
-                });
-            });
-
-            closeButton.addEventListener('click', function() {
-                aiModal.style.display = 'none';
-            });
-
-            // Fecha o modal se clicar fora do conteúdo do modal
-            window.addEventListener('click', function(event) {
-                if (event.target == aiModal) {
-                    aiModal.style.display = 'none';
-                }
             });
         });
     </script>

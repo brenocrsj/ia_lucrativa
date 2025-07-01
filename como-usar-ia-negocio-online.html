@@ -43,7 +43,7 @@
             <article class="main-content">
                 <h1>Como Usar a IA para Iniciar e Escalar um Negócio Online</h1>
                 <p class="article-meta">Publicado em 30 de Junho de 2025 por IA Lucrativa</p>
-                <img src="https://via.placeholder.com/800x450?text=Negocio+Online+IA" alt="Imagem ilustrativa de negócio online com IA" class="article-hero-image">
+                <img src="./img/negocio-online-ia.jpg" alt="Imagem ilustrativa de negócio online com IA" class="article-hero-image">
                 <p>Iniciar e escalar um negócio online nunca foi tão acessível, graças ao poder da Inteligência Artificial. A IA pode auxiliar em todas as fases do empreendimento, desde a ideia inicial até a otimização de vendas. Descubra como usar a IA para impulsionar seu <strong>negócio online</strong>.</p>
                 <h3>Desde a Ideia ao Lançamento: Onde a IA Ajuda</h3>
                 <ul>
@@ -115,37 +115,5 @@
             });
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const aiModal = document.getElementById('aiGenerationModal');
-            const closeButton = aiModal.querySelector('.close-button');
-            // Seleciona todas as imagens que devem ativar o modal
-            const images = document.querySelectorAll('.article-hero-image, .article-card img, .about-image');
-
-            images.forEach(image => {
-                // Adiciona um overlay para o efeito visual ao passar o mouse
-                const overlay = document.createElement('div');
-                overlay.className = 'image-overlay';
-                overlay.innerHTML = '<span>Clique para Gerar<br>por IA!</span>';
-                image.parentNode.insertBefore(overlay, image.nextSibling); 
-
-                // Evento de clique para mostrar o modal
-                image.addEventListener('click', function() {
-                    aiModal.style.display = 'flex';
-                });
-            });
-
-            closeButton.addEventListener('click', function() {
-                aiModal.style.display = 'none';
-            });
-
-            // Fecha o modal se clicar fora do conteúdo do modal
-            window.addEventListener('click', function(event) {
-                if (event.target == aiModal) {
-                    aiModal.style.display = 'none';
-                }
-            });
-        });
-    </script>
-</body>
+    </body>
 </html>
