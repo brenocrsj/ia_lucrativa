@@ -30,6 +30,7 @@ body {
     background-color: var(--light-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-smoothing: grayscale;
+    /* Removido padding-bottom, pois o modal não é mais fixo para cobrir o rodapé */
 }
 
 /* Container centraliza o conteúdo e define largura máxima */
@@ -106,7 +107,7 @@ strong {
     border-radius: 50px; /* Formato de pílula */
     font-weight: 700;
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease; /* Simplificado para todas as transições */
     border: none;
     cursor: pointer;
     box-shadow: var(--shadow-light);
@@ -324,9 +325,29 @@ strong {
     border-color: var(--primary-color); /* Borda ciano no hover */
 }
 
-.article-card img {
+/* Estilos para Imagens Clicáveis (Removendo o overlay de texto, mas mantendo o hover visual) */
+.article-hero-image,
+.article-card img,
+.about-image {
+    cursor: default; /* Volta para o cursor padrão, pois não é mais clicável para ação */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    border: 2px solid transparent; /* Adiciona uma borda transparente para transição */
+    position: relative; /* Mantido para que transform e shadow funcionem bem */
+    overflow: hidden;
+}
+
+.article-hero-image:hover,
+.article-card img:hover,
+.about-image:hover {
+    transform: scale(1.01); /* Leve zoom mais sutil */
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4); /* Brilho neon mais sutil no hover */
+    border-color: var(--primary-color); /* Borda primária */
+}
+
+
+.article-card img { /* Garante que as imagens nos cards mantenham o estilo de objeto-fit e altura */
     width: 100%;
-    height: 250px; /* Imagem um pouco maior */
+    height: 250px; 
     object-fit: cover;
     border-bottom: 1px solid var(--border-color);
 }
@@ -415,7 +436,7 @@ strong {
     padding-bottom: 18px;
 }
 
-.article-hero-image {
+.article-hero-image { /* Estilo da imagem principal do artigo */
     width: 100%;
     height: auto;
     border-radius: 10px;
@@ -870,6 +891,13 @@ strong {
     color: var(--primary-color);
 }
 
+/* Informações do desenvolvedor no rodapé */
+.developer-info {
+    font-size: 0.85em;
+    color: var(--text-dark);
+    margin-top: 15px; /* Espaçamento da navegação do rodapé */
+}
+
 /* LGPD Cookie Consent Banner Styles */
 .cookie-banner {
     position: fixed;
@@ -940,7 +968,7 @@ strong {
 
 /* Ajuste para o conteúdo não ficar por baixo do banner */
 body {
-    padding-bottom: 100px; /* Aumenta o padding para o banner maior e mais visível. Ajuste se necessário. */
+    /* Removido padding-bottom, pois o modal de IA não é mais fixo para cobrir o rodapé */
 }
 
 
@@ -1047,7 +1075,7 @@ body {
     .main-nav ul li a::after { 
         display: none; 
     }
-    .main-nav ul li a.active {
+  .main-nav ul li a.active {
         background-color: #0f2a40;
         color: var(--primary-color);
     }

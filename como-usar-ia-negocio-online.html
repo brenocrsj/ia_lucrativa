@@ -85,6 +85,7 @@
                     <li><a href="termos-de-uso.html">Termos de Uso</a></li>
                 </ul>
             </nav>
+            <p class="developer-info">Desenvolvido por BSsoluções</p>
         </div>
     </footer>
     <div id="cookie-banner" class="cookie-banner">
@@ -93,6 +94,7 @@
             <button id="accept-cookies" class="btn btn-cookie">Aceitar e Fechar</button>
         </div>
     </div>
+
     <script>
         document.querySelector('.menu-toggle').addEventListener('click', function() {
             document.querySelector('.main-nav ul').classList.toggle('active');
@@ -110,6 +112,38 @@
             acceptButton.addEventListener('click', function() {
                 localStorage.setItem('cookiesAccepted', 'true');
                 cookieBanner.style.display = 'none';
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiModal = document.getElementById('aiGenerationModal');
+            const closeButton = aiModal.querySelector('.close-button');
+            // Seleciona todas as imagens que devem ativar o modal
+            const images = document.querySelectorAll('.article-hero-image, .article-card img, .about-image');
+
+            images.forEach(image => {
+                // Adiciona um overlay para o efeito visual ao passar o mouse
+                const overlay = document.createElement('div');
+                overlay.className = 'image-overlay';
+                overlay.innerHTML = '<span>Clique para Gerar<br>por IA!</span>';
+                image.parentNode.insertBefore(overlay, image.nextSibling); 
+
+                // Evento de clique para mostrar o modal
+                image.addEventListener('click', function() {
+                    aiModal.style.display = 'flex';
+                });
+            });
+
+            closeButton.addEventListener('click', function() {
+                aiModal.style.display = 'none';
+            });
+
+            // Fecha o modal se clicar fora do conteúdo do modal
+            window.addEventListener('click', function(event) {
+                if (event.target == aiModal) {
+                    aiModal.style.display = 'none';
+                }
             });
         });
     </script>

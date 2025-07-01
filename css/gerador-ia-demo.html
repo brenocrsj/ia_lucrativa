@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Imagem IA (Demonstração) - IA Lucrativa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F1A2B; /* Fundo escuro do seu tema */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #E0E6F6; /* Texto claro */
+        }
+        .container {
+            background-color: #1a2a3a; /* Cor secundária do seu tema */
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 191, 255, 0.4); /* Sombra com brilho ciano */
+            border: 2px solid #00BFFF; /* Borda da cor primária */
+            padding: 30px;
+            max-width: 700px; /* Um pouco mais largo */
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #00BFFF; /* Ciano para o título */
+            font-family: 'Orbitron', sans-serif; /* Fonte do seu tema */
+            font-size: 2.5em; /* Tamanho do título */
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.6);
+        }
+        .message-box {
+            background-color: #ffe066; /* Amarelo claro do seu tema */
+            border: 1px solid #FF6B6B; /* Vermelho coral para borda de aviso */
+            color: #975a16; /* Cor de texto para o aviso */
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            display: block; /* Visível por padrão para o aviso */
+            text-align: left;
+        }
+        .message-box.error {
+            background-color: #ffcdd2; /* Tom de vermelho claro para erro */
+            border-color: #f44336; /* Vermelho mais forte */
+            color: #b71c1c; /* Texto vermelho escuro */
+        }
+        .btn-generate {
+            background-image: linear-gradient(to right, #8A2BE2 0%, #00BFFF 100%); /* Gradiente roxo-ciano */
+            color: white;
+            padding: 15px 35px; /* Botão maior */
+            border-radius: 50px; /* Formato de pílula */
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+        }
+        .btn-generate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 191, 255, 0.6);
+            background-image: linear-gradient(to left, #8A2BE2 0%, #00BFFF 100%); /* Inverte o gradiente no hover */
+        }
+        .loading-spinner {
+            border: 4px solid #2F4F6F; /* Cor da borda do spinner */
+            border-top: 4px solid #00BFFF; /* Cor do topo do spinner (ciano) */
+            border-radius: 50%;
+            width: 40px; /* Spinner maior */
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 30px auto; /* Mais margem */
+            display: none;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .image-display {
+            margin-top: 30px;
+            border: 2px dashed #2F4F6F; /* Borda tracejada do tema */
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #0F1A2B; /* Fundo escuro */
+            min-height: 250px; /* Altura placeholder */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #A9B1C2; /* Texto cinza */
+            font-style: italic;
+            font-size: 1.1em;
+            padding: 20px;
+        }
+        .image-display img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.4); /* Brilho na imagem gerada */
+        }
+        /* Responsividade básica */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .btn-generate {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Imagem de IA</h1>
+        <div id="messageBox" class="message-box">
+            <strong>ATENÇÃO:</strong> Este é um gerador de imagens de IA de demonstração. A funcionalidade de geração real requer uma chave de API válida e um backend (servidor) para segurança e para evitar problemas de CORS. Esta versão não fará chamadas à API.
+        </div>
+        <p class="text-gray-600 mb-6" style="color: #A9B1C2;">Clique no botão abaixo para simular a geração de uma imagem sobre "Como Ganhar Dinheiro com Inteligência Artificial (IA) em 2025: O Guia Definitivo para Iniciantes".</p>
+        <button id="generateImageBtn" class="btn-generate">Gerar Imagem</button>
+        <div id="loadingSpinner" class="loading-spinner"></div>
+        <div id="imageDisplay" class="image-display">
+            Sua imagem aparecerá aqui.
+        </div>
+    </div>
+
+    <script type="module">
+        // AVISO: Em um ambiente real, a API KEY NUNCA deve ser exposta no lado do cliente.
+        // Ela deve ser usada por um backend (servidor) para fazer as requisições de forma segura.
+        const IMAGEN_API_KEY = "SUA_API_KEY_DO_GOOGLE_CLOUD_AQUI"; // Substitua pela sua chave REAL se usar um backend
+        const IMAGEN_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict";
+
+        const generateImageBtn = document.getElementById('generateImageBtn');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const imageDisplay = document.getElementById('imageDisplay');
+        const messageBox = document.getElementById('messageBox');
+
+        function showMessage(message, type = 'info') {
+            messageBox.textContent = message;
+            messageBox.className = `message-box ${type === 'error' ? 'bg-red-100 border-red-400 text-red-700' : 'bg-yellow-100 border-yellow-400 text-yellow-700'}`;
+            messageBox.style.display = 'block';
+        }
+
+        function hideMessage() {
+            messageBox.style.display = 'none';
+        }
+
+        async function generateImage(prompt) {
+            loadingSpinner.style.display = 'block';
+            imageDisplay.innerHTML = 'Gerando imagem... <br> (Isso é apenas uma simulação nesta versão estática)';
+            hideMessage();
+
+            if (IMAGEN_API_KEY === "SUA_API_KEY_DO_GOOGLE_CLOUD_AQUI" || !IMAGEN_API_KEY) {
+                // Simulação da geração em um site estático
+                await new Promise(resolve => setTimeout(resolve, 3000)); // Simula tempo de carregamento
+                const simulatedImage = "https://via.placeholder.com/500x500/8A2BE2/FFFFFF?text=IMAGEM+GERADA+POR+IA+%28DEMO%29";
+                imageDisplay.innerHTML = `<img src="${simulatedImage}" alt="Imagem Gerada por IA de Demonstração">`;
+                showMessage('Imagens de IA reais exigem uma API Key e um backend para segurança!', 'info');
+                loadingSpinner.style.display = 'none';
+                return;
+            }
+
+            // O código abaixo SÓ FUNCIONARIA SE VOCÊ TIVESSE UM BACKEND OU UMA CHAVE DE API SEGURA
+            // E SE AS RESTRIÇÕES DE CORS PERMITISSEM A CHAMADA DIRETA (o que é raro e inseguro)
+            try {
+                const payload = { instances: [{ prompt: prompt }], parameters: { "sampleCount": 1 } };
+                const apiUrl = `${IMAGEN_API_URL}?key=${IMAGEN_API_KEY}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`Erro na API: ${errorData.error.message || response.statusText}`);
+                }
+
+                const result = await response.json();
+
+                if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                    const imageUrl = `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+                    imageDisplay.innerHTML = `<img src="${imageUrl}" alt="Imagem Gerada por IA">`;
+                    showMessage('Imagem gerada com sucesso!', 'success');
+                } else {
+                    showMessage('Nenhuma imagem foi gerada. Tente novamente.', 'error');
+                    imageDisplay.innerHTML = 'Falha ao gerar imagem.';
+                }
+            } catch (error) {
+                console.error('Erro ao gerar imagem:', error);
+                showMessage(`Erro ao gerar imagem: ${error.message}. Verifique sua API Key e configurações.`, 'error');
+                imageDisplay.innerHTML = 'Erro!';
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+        }
+
+        generateImageBtn.addEventListener('click', () => {
+            const prompt = "An illustrative image for 'How to Make Money with Artificial Intelligence (AI) in 2025: The Definitive Guide for Beginners'. The image should feature elements like a stylized brain or circuit board subtly integrated with money symbols (coins, dollar signs), growth charts, and futuristic technology, conveying concepts of innovation, finance, and future opportunities. The style should be modern and clean, possibly with a vibrant color palette, suitable for a guide cover.";
+            generateImage(prompt);
+        });
+    </script>
+</body>
+</html>
